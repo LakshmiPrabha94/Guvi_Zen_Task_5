@@ -1,0 +1,63 @@
+#Name: Lakshmi Prabha
+#Program : Program that takes a string and returns true if it is a palindrome false otherwise.
+#Date : 25 Nov 2023
+#Version: 1
+#Python Version: 3.12.0
+
+def reverse_string(input_string):
+    user_input = input_string
+    # Use slicing to reverse the string
+    reversed_str = input_string[::-1]
+    
+    # Print the reversed string
+    print("Reversed String:", reversed_str)
+    if user_input == reversed_str:
+        print("True")
+    else:
+        print("False")
+
+# Get input string from the user
+user_input = input("Enter a string: ")
+
+# Call the function to reverse and print the string
+reverse_string(user_input)
+
+
+
+
+def longest_common_substrings(str1, str2):
+    """
+    Function to find the longest common substrings between two strings.
+
+    Parameters:
+    - str1: The first input string.
+    - str2: The second input string.
+
+    Returns:
+    - common_substrings: List of longest common substrings.
+    """
+    common_substrings = []
+
+    # Iterate through all possible substrings of both strings
+    for i in range(len(str1)):
+        for j in range(len(str2)):
+            k = 0
+            # Check for common substrings
+            while i + k < len(str1) and j + k < len(str2) and str1[i + k] == str2[j + k]:
+                k += 1
+            # If a longer common substring is found, update the result list
+            if k > 0 and (not common_substrings or k > len(common_substrings[0])):
+                common_substrings = [str1[i:i + k]]
+            elif k > 0 and k == len(common_substrings[0]):
+                common_substrings.append(str1[i:i + k])
+
+    return common_substrings
+
+# Example usage:
+string1 = input("Enter the first string: ")
+string2 = input("Enter the second string: ")
+
+result = longest_common_substrings(string1, string2)
+
+# Display the result
+print(f"Longest common substrings: {result}")
